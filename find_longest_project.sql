@@ -1,0 +1,8 @@
+SELECT id, TIMESTAMPDIFF(MONTH, start_date, finish_date) AS month_count
+FROM project
+WHERE TIMESTAMPDIFF(MONTH, start_date, finish_date) = (
+	SELECT TIMESTAMPDIFF(MONTH, start_date, finish_date)
+    FROM project
+    ORDER BY TIMESTAMPDIFF(MONTH, start_date, finish_date) DESC
+    LIMIT 1
+);
